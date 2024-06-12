@@ -1,11 +1,13 @@
 import hashlib
 import sqlite3 as sqlite
+import os
 
 class StockManagementModel:
     def __init__(self):
         self.create_database()
 
     def create_database(self):
+        os.makedirs('database', exist_ok=True)
         with sqlite.connect('database/Gestion_de_Stock.db') as conn:
             c = conn.cursor()
             c.execute('''CREATE TABLE IF NOT EXISTS Articles (
