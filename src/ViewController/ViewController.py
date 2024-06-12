@@ -4,6 +4,7 @@ from tkinter import messagebox, ttk
 from datetime import datetime
 from openpyxl import load_workbook
 from src.Model.model import StockManagementModel
+import os
 
 class StockManagementApp(CTk):
     def __init__(self):
@@ -420,6 +421,7 @@ class StockManagementApp(CTk):
         self.create_label_entry_button(self.report_frame, button_text="Back", button_command=self.Affichage, pady=10)
 
     def generate_excel_report(self, report_data, report_type, start_date=None, end_date=None):
+        os.makedirs('Reports', exist_ok=True)
         if report_type == "Stock":
             template_path = 'Templates/template_inventory_list.xlsx'
             workbook = load_workbook(template_path)
